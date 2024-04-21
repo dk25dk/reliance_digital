@@ -1,0 +1,138 @@
+import React from "react";
+import { Home } from "../src/components/HomeComponents/Home";
+import { SingleProductCard } from "./components/ProductBasedComponent/SingleProductCard";
+function App() {
+  return (
+    <div className="App bg-black">
+      <h1>Relience</h1>
+      <Home />
+      {/* <SingleProductCard
+        singlePro={{
+          name: "Lokesh",
+          displayImage:
+            "https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?cs=srgb&dl=pexels-simon-robben-614810.jpg&fm=jpg",
+        }}
+      /> */}
+    </div>
+  );
+}
+
+export default App;
+
+import React from "react";
+
+export function SingleProductCard({ singlePro }) {
+  return (
+    <>
+      <div className="w-[300px] border rounded-lg bg-slate-400 p-2">
+        <img
+          className="transition-transform duration-300 hover:scale-105"
+          src={singlePro.displayImage}
+        />
+        <p>{singlePro.name}</p>
+      </div>
+    </>
+  );
+}
+
+
+
+import React from "react";
+import { SingleProductCard } from "./SingleProductCard";
+
+export function ProductList({ productL }) {
+  console.log("Im Product List ");
+  console.log(productL);
+  return (
+    <>
+      <div className="flex flex-wrap gap-2 justify-evenly mt-2">
+        {productL.map((product) => (
+          <SingleProductCard key={product.name} singlePro={product} />
+        ))}
+      </div>
+    </>
+  );
+}
+
+
+import React from "react";
+
+export function Slider() {
+  return (
+    <div>
+      <img
+        className="w-full"
+        src="https://www.reliancedigital.in/medias/RD-544x306.jpg?context=bWFzdGVyfGltYWdlc3wxMzgzNDJ8aW1hZ2UvanBlZ3xpbWFnZXMvaDNjL2gyOC8xMDEyMDI0OTgzNTU1MC5qcGd8MTYxZThlYjAyNTU2N2YwMTEzMDFiYjFlODJkMzE4MWY4M2VmZTI3ODMzNGFhY2M2NDQzZDM0NGYyZDFjZTc2NA"
+      />
+    </div>
+  );
+}
+
+
+
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { ProductList } from "../ProductBasedComponent/ProductList";
+import { Slider } from "../HomeComponents/Slider";
+import { fetchData } from "../../ApiServices/ApiCalls";
+
+export function Home() {
+  const [data, setData] = useState([]);
+
+  // Fetch data from API
+  useEffect(async () => {
+    const res = await fetchData();
+    if (res) {
+      setData(res.data.data);
+    }
+  }, []);
+
+  return (
+    <>
+      <Slider />
+      <ProductList productL={data} />
+    </>
+  );
+}
+
+
+
+export const mySlider = [
+  {
+    src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwguzNGlaHChVLISVT_dISedy9PAQsqqEZRB8l92dE5w&s",
+    alt: "google slider",
+    href: "www.google.com",
+  },
+
+  {
+    src: "https://www.shutterstock.com/image-photo/kiev-ukraine-april-08-2015-260nw-277441490.jpg",
+    alt: "facebook page",
+    href: "www.facebook.com",
+  },
+  {
+    src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaUfswEhsAnkW6nQEVfWRxEFuIjXZRdJPE556Cw7p66A&s",
+    alt: "Twetter page",
+    href: "www.tweeter.com",
+  },
+];
+
+
+import axios from "axios";
+
+export const fetchData = async () => {
+  const url =
+    "https://academics.newtonschool.co/api/v1/ecommerce/electronics/products";
+  const projectId = "0io9zoi91tt";
+
+  try {
+    const response = await axios.get(url, {
+      headers: {
+        projectId,
+      },
+    });
+    if (!response) throw new Error("No data found!");
+    return response;
+  } catch (err) {
+    console.log(err.message);
+  }
+};
