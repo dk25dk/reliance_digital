@@ -2,10 +2,10 @@ import React from 'react'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import PersonIcon from '@mui/icons-material/Person';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function Navlink() {
-    // const naviagte = useNavigate()
+    const naviagte = useNavigate()
     return (
         <div className=' list-none'>
             <ul className='flex  text-white gap-3 md'>
@@ -17,7 +17,7 @@ function Navlink() {
                     <ShoppingCartIcon />
                     Cart
                 </li>
-                <li className='mr-3 m-3 cursor-pointer' >
+                <li className='mr-3 m-3 cursor-pointer' onClick={() => naviagte('/login')} >
                     <PersonIcon />
                     Login
                 </li>

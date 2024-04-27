@@ -23,7 +23,7 @@ export const fetchData = async () => {
 
 export const fetchLowestPriceData = async () => {
     const url = `https://academics.newtonschool.co/api/v1/ecommerce/electronics/products?sort={"price":-1}`
-    const projectId = "0io9zoi91tt";
+    const projectId = "0io9zoi91tt1";
 
     try {
         const response = await axios.get(url, {

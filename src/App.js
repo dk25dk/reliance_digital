@@ -8,15 +8,18 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Outlet } from '@mui/icons-material';
 import { Login } from './home/Login'
 import { Cart } from './home/Cart'
+import { Ac } from './appPage/Ac'
 
 
 function App() {
   return (
     <div>
+      <Ac />
       <BrowserRouter>
         <Navbar />
         <CategoriesBar />
         <Outlet />
+
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />

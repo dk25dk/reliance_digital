@@ -3,9 +3,9 @@ import { useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom';
 
 export function Login() {
-    const naviagte = useNavigate();
+    // const naviagte = useNavigate();
     return (
-        <div onClick={() => naviagte('./login')}>
+        <div>
             <div className='flex'>
                 <div className="flex gap-3 m-2">
                     <img src="	https://www.reliancedigital.in/akamai/images/web/LoginWebBanner.jpeg" alt="sales-poster" />
