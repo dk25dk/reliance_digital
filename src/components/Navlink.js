@@ -13,7 +13,7 @@ function Navlink() {
                     <LocationOnIcon />
                     Select your pin code
                 </li>
-                <li className='mr-3 m-3 cursor-pointer hover:text' >
+                <li className='mr-3 m-3 cursor-pointer hover:text' onClick={() => naviagte('/cart')}>
                     <ShoppingCartIcon />
                     Cart
                 </li>
